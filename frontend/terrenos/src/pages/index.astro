@@ -1,0 +1,19 @@
+---
+import Layout from '../layouts/Layout.astro';
+import TerrenoCard from '../components/TerrenoCard.astro';
+
+const response = await fetch('http://localhost:3000/api/terrenos');
+const terrenos = await response.json();
+---
+
+<Layout>
+  <h1>Terrenos en Venta</h1>
+  {terrenos.map(terreno => (
+    <TerrenoCard 
+      nombre={terreno.nombre} 
+      ubicacion={terreno.ubicacion} 
+      precio={terreno.precio} 
+      descripcion={terreno.descripcion} 
+    />
+  ))}
+</Layout>
