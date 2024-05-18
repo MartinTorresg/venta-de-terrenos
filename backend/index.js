@@ -34,7 +34,7 @@ app.get('/', (req, res) => {
   res.send('Servidor Express funcionando!');
 });
 
-// Iniciar el servidor
+// Iniciar el servidor a
 app.listen(port, () => {
   console.log(`Servidor escuchando en el puerto ${port}`);
 });
