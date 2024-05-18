@@ -5,6 +5,7 @@ exports.getTerrenos = async (req, res) => {
   try {
     const terrenos = await Terreno.find();
     res.json(terrenos);
+    console.log("este es un terreno")
   } catch (error) {
     res.status(500).json({ message: error.message });
   }

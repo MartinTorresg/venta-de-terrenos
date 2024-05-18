@@ -1,8 +1,44 @@
-<html>
-  <head>
-    <title>Venta de Terrenos</title>
-  </head>
-  <body>
-    <slot />
-  </body>
+---
+// Importar el archivo CSS
+import '../styles/main.css';
+
+// Obtener los props desde Astro
+const { title, content } = Astro.props;
+---
+
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{title}</title>
+  <link rel="stylesheet" href="/src/styles/main.css">
+</head>
+<body>
+  <header>
+    <div class="container">
+      <div class="header-content">
+        <div class="logo">
+          <img src="/Logo.png" alt="Logo">
+          <div class="site-title">LOGO</div>
+        </div>
+        <nav class="nav-links">
+          <a href="/">Inicio</a>
+          <a href="/terrenos">Terrenos</a>
+          <a href="/contacto">Contacto</a>
+          <a href="#" class="work-with-us">Work with us</a>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    {content}
+  </main>
+
+  <footer>
+    <div class="container">
+      &copy; 2024 Your Company. All rights reserved.
+    </div>
+  </footer>
+</body>
 </html>

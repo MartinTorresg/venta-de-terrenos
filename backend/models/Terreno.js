@@ -21,6 +21,6 @@ const terrenoSchema = new mongoose.Schema({
   }
 });
 
-const Terreno = mongoose.model('Terreno', terrenoSchema);
+const Terreno = mongoose.model('Terreno', terrenoSchema, "terrenos");
 
 module.exports = Terreno;
