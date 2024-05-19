@@ -24,8 +24,12 @@ mongoose.connect(`mongodb://${process.env.DB_HOST}:${process.env.DB_PORT}/${proc
 });
 
 // Rutas
+const authRouter = require('./routes/auth');
+app.use('/api/auth', authRouter);
+
 const terrenosRouter = require('./routes/terrenos');
-app.use('/api/terrenos', terrenosRouter);
+const authMiddleware = require('./middleware/auth');
+app.use('/api/terrenos', authMiddleware, terrenosRouter);
 
 // Ruta básica
 app.get('/', (req, res) => {
