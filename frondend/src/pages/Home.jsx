@@ -7,9 +7,9 @@ import meetingImage from '../assets/meeting.jpg'; // Asegúrate de que la ruta s
 const Home = () => {
   return (
     <div className="bg-gray-800">
-      <div className="relative flex items-center justify-center h-screen">
-        <div className="absolute top-16 left-10 text-left px-8 max-w-xl">
-          <h1 className="text-white text-5xl font-bold mb-4">
+      <div className="relative flex flex-col lg:flex-row items-center justify-center h-screen mb-0">
+        <div className="text-left px-8 max-w-xl lg:absolute lg:top-16 lg:left-10">
+          <h1 className="text-white text-4xl lg:text-5xl font-bold mb-4">
             Terrenos ideales para ti
           </h1>
           <p className="text-gray-300 mb-8">
@@ -22,7 +22,7 @@ const Home = () => {
             </Link>
           </div>
         </div>
-        <div className="absolute top-16 right-10 max-w-lg">
+        <div className="mt-8 lg:absolute lg:top-16 lg:right-10 max-w-lg w-full">
           <img src={terrenoImage} alt="Terreno" className="rounded-lg shadow-md w-full" />
         </div>
       </div>
