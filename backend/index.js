@@ -1,5 +1,3 @@
-// backend/index.js
-
 require('dotenv').config();
 
 const express = require('express');
@@ -34,7 +32,7 @@ app.get('/', (req, res) => {
   res.send('Servidor Express funcionando!');
 });
 
-// Iniciar el servidor a
+// Iniciar el servidor
 app.listen(port, () => {
   console.log(`Servidor escuchando en el puerto ${port}`);
 });

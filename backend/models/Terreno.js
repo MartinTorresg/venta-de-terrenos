@@ -1,5 +1,3 @@
-// backend/models/Terreno.js
-
 const mongoose = require('mongoose');
 
 const terrenoSchema = new mongoose.Schema({
@@ -18,9 +16,13 @@ const terrenoSchema = new mongoose.Schema({
   descripcion: {
     type: String,
     required: true
+  },
+  disponibilidad: {
+    type: Boolean,
+    default: true
   }
 });
 
-const Terreno = mongoose.model('Terreno', terrenoSchema, "terrenos");
+const Terreno = mongoose.model('Terreno', terrenoSchema, 'terrenos');
 
 module.exports = Terreno;
