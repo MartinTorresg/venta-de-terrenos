@@ -19,10 +19,9 @@ const Dashboard = () => {
         const res = await axios.get('http://localhost:3000/api/terrenos', {
           headers: { 'x-auth-token': token }
         });
-        console.log('Respuesta de la API:', res.data); // Verificar la estructura de la respuesta
+        console.log('Respuesta de la API:', res.data);
         setTerrenos(res.data.terrenos);
 
-        // Calcular estadísticas
         const total = res.data.terrenos.length;
         const precioTotal = res.data.terrenos.reduce((acc, terreno) => acc + terreno.precio, 0);
         const precioPromedio = total ? precioTotal / total : 0;
@@ -46,10 +45,13 @@ const Dashboard = () => {
   const handleDelete = async (id) => {
     try {
       const token = localStorage.getItem('token');
+      console.log('Token para eliminación:', token);
+      console.log('ID del terreno a eliminar:', id);
       await axios.delete(`http://localhost:3000/api/terrenos/${id}`, {
         headers: { 'x-auth-token': token }
       });
       setTerrenos(terrenos.filter((terreno) => terreno._id !== id));
+      console.log('Terreno eliminado correctamente en el frontend');
     } catch (err) {
       console.error('Error deleting terreno:', err);
       setError('Error al eliminar el terreno. Intenta de nuevo más tarde.');

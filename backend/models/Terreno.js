@@ -19,11 +19,11 @@ const terrenoSchema = new mongoose.Schema({
   },
   disponibilidad: {
     type: Boolean,
-    default: true
+    required: true
   },
-  imagen: {
-    type: String,
-    default: ''
+  imagenes: {
+    type: [String], // Array de strings para las rutas de las imágenes
+    required: false
   }
 });
 

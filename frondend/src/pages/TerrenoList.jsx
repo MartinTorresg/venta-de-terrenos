@@ -42,7 +42,11 @@ const TerrenoList = () => {
       <div className="grid grid-cols-1 gap-6">
         {terrenos.map((terreno) => (
           <div key={terreno._id} className="bg-white rounded-lg shadow-md p-4 flex">
-            <img src={terreno.imagenes ? terreno.imagenes[0] : 'https://via.placeholder.com/150'} alt={terreno.nombre} className="w-1/4 rounded-lg mr-4" />
+            <img
+              src={terreno.imagenes && terreno.imagenes.length > 0 ? `http://localhost:3000/${terreno.imagenes[0]}` : 'https://via.placeholder.com/150'}
+              alt={terreno.nombre}
+              className="w-1/4 rounded-lg mr-4"
+            />
             <div className="flex flex-col justify-between w-3/4">
               <div>
                 <h2 className="text-xl font-bold text-gray-800">{terreno.nombre}</h2>
