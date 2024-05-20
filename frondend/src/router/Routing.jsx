@@ -1,6 +1,5 @@
-// src/router/Routing.jsx
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Home from '../pages/Home';
 import TerrenoList from '../pages/TerrenoList';
 import TerrenoDetail from '../pages/TerrenoDetail';
@@ -11,11 +10,11 @@ const Routing = () => {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<PublicLayout />}>
-          <Route index element={<Home />} />
-          <Route path="terrenos" element={<TerrenoList />} />
-          <Route path="terreno/:id" element={<TerrenoDetail />} />
-          <Route path="contacto" element={<Contact />} />
+        <Route element={<PublicLayout />}>
+          <Route path="/" element={<Home />} />
+          <Route path="/terrenos" element={<TerrenoList />} />
+          <Route path="/terreno/:id" element={<TerrenoDetail />} />
+          <Route path="/contacto" element={<Contact />} />
         </Route>
       </Routes>
     </Router>

@@ -1,5 +1,4 @@
 require('dotenv').config();
-
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
@@ -24,12 +23,8 @@ mongoose.connect(`mongodb://${process.env.DB_HOST}:${process.env.DB_PORT}/${proc
 });
 
 // Rutas
-const authRouter = require('./routes/auth');
-app.use('/api/auth', authRouter);
-
 const terrenosRouter = require('./routes/terrenos');
-const authMiddleware = require('./middleware/auth');
-app.use('/api/terrenos', authMiddleware, terrenosRouter);
+app.use('/api/terrenos', terrenosRouter);
 
 // Ruta básica
 app.get('/', (req, res) => {

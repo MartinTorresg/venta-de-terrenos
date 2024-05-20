@@ -2,11 +2,24 @@ const Terreno = require('../models/Terreno');
 
 // Obtener todos los terrenos
 exports.getTerrenos = async (req, res) => {
+  const { page = 1, limit = 10 } = req.query;
+  console.log('Obteniendo terrenos con paginación - Página:', page, 'Límite:', limit);
+
   try {
-    const terrenos = await Terreno.find();
-    res.json(terrenos);
+    const terrenos = await Terreno.find()
+      .limit(limit * 1)
+      .skip((page - 1) * limit)
+      .exec();
+    const count = await Terreno.countDocuments();
+
+    console.log('Terrenos obtenidos:', terrenos);
+    res.json({
+      terrenos,
+      totalPages: Math.ceil(count / limit),
+      currentPage: page,
+    });
   } catch (err) {
-    console.log('Error al obtener terrenos:', err);
+    console.log('Error al obtener terrenos:', err.message);
     res.status(500).json({ message: err.message });
   }
 };

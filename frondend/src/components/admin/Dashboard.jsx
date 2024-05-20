@@ -9,6 +9,7 @@ const Dashboard = () => {
   const [search, setSearch] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
   const [terrenosPerPage] = useState(10);
+  const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -18,17 +19,20 @@ const Dashboard = () => {
         const res = await axios.get('http://localhost:3000/api/terrenos', {
           headers: { 'x-auth-token': token }
         });
-        setTerrenos(res.data);
+        console.log('Respuesta de la API:', res.data); // Verificar la estructura de la respuesta
+        setTerrenos(res.data.terrenos);
 
         // Calcular estadísticas
-        const total = res.data.length;
-        const precioTotal = res.data.reduce((acc, terreno) => acc + terreno.precio, 0);
+        const total = res.data.terrenos.length;
+        const precioTotal = res.data.terrenos.reduce((acc, terreno) => acc + terreno.precio, 0);
         const precioPromedio = total ? precioTotal / total : 0;
 
         setSummary({ total, precioPromedio });
+        setLoading(false);
       } catch (err) {
         console.error('Error fetching terrenos:', err);
         setError('Error al obtener los terrenos. Intenta de nuevo más tarde.');
+        setLoading(false);
       }
     };
 
@@ -62,6 +66,14 @@ const Dashboard = () => {
   const currentTerrenos = filteredTerrenos.slice(indexOfFirstTerreno, indexOfLastTerreno);
 
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
+
+  if (loading) {
+    return <p>Cargando...</p>;
+  }
+
+  if (error) {
+    return <p>{error}</p>;
+  }
 
   return (
     <div className="min-h-screen bg-gray-800 text-white">
