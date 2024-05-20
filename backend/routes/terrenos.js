@@ -1,18 +1,31 @@
-// backend/routes/terrenos.js
 const express = require('express');
 const router = express.Router();
-const terrenosController = require('../controllers/terrenosController');
+const multer = require('multer');
+const fs = require('fs');
+const path = require('path');
+const { getTerrenos, getTerrenoById, createTerreno, updateTerreno, deleteTerreno } = require('../controllers/terrenoController');
+const auth = require('../middleware/auth');
 
-// Obtener todos los terrenos
-router.get('/', terrenosController.getTerrenos);
+const uploadDir = path.join(__dirname, '../uploads');
+if (!fs.existsSync(uploadDir)) {
+  fs.mkdirSync(uploadDir, { recursive: true });
+}
 
-// Crear un nuevo terreno
-router.post('/', terrenosController.createTerreno);
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, uploadDir);
+  },
+  filename: (req, file, cb) => {
+    cb(null, `${Date.now()}-${file.originalname}`);
+  }
+});
 
-// Actualizar un terreno
-router.put('/:id', terrenosController.updateTerreno);
+const upload = multer({ storage });
 
-// Eliminar un terreno
-router.delete('/:id', terrenosController.deleteTerreno);
+router.get('/', auth, getTerrenos);
+router.get('/:id', auth, getTerrenoById);
+router.post('/', auth, upload.array('imagenes', 9), createTerreno);  // Para crear con múltiples imágenes
+router.put('/:id', auth, upload.array('imagenes', 9), updateTerreno);  // Para actualizar con múltiples imágenes
+router.delete('/:id', auth, deleteTerreno);
 
 module.exports = router;

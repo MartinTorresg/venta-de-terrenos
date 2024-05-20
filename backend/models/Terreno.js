@@ -20,9 +20,13 @@ const terrenoSchema = new mongoose.Schema({
   disponibilidad: {
     type: Boolean,
     default: true
+  },
+  imagen: {
+    type: String,
+    default: ''
   }
 });
 
-const Terreno = mongoose.model('Terreno', terrenoSchema, 'terrenos');
+const Terreno = mongoose.model('Terreno', terrenoSchema, "terrenos");
 
 module.exports = Terreno;

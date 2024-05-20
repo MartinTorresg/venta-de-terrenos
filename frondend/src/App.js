@@ -28,6 +28,7 @@ const App = () => {
         <Route path="/admin" element={<ProtectedRoute><AdminLayout /></ProtectedRoute>}>
           <Route path="dashboard" element={<Dashboard />} />
           <Route path="terrenos/new" element={<TerrenoForm />} />
+          <Route path="terrenos/edit/:id" element={<TerrenoForm />} />
         </Route>
 
         {/* Redirección por defecto */}
