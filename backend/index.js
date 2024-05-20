@@ -30,9 +30,11 @@ mongoose.connect(`mongodb://${process.env.DB_HOST}:${process.env.DB_PORT}/${proc
 // Rutas
 const terrenosRouter = require('./routes/terrenos');
 const authRouter = require('./routes/auth'); // Agrega esta línea
+const contactRouter = require('./routes/contact');
 
 app.use('/api/terrenos', terrenosRouter);
 app.use('/api/auth', authRouter); // Agrega esta línea
+app.use('/api/contact', contactRouter);
 
 // Ruta básica
 app.get('/', (req, res) => {
