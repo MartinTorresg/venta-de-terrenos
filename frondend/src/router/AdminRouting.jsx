@@ -4,6 +4,7 @@ import AdminLayout from '../components/admin/AdminLayout';
 import Login from '../components/admin/Login';
 import Dashboard from '../components/admin/Dashboard';
 import TerrenoForm from '../components/admin/TerrenoForm';
+import MensajesAdmin from './components/admin/MensajesAdmin';
 
 const AdminRouting = () => {
   return (
@@ -12,6 +13,7 @@ const AdminRouting = () => {
         <Route path="login" element={<Login />} />
         <Route path="dashboard" element={<Dashboard />} />
         <Route path="terrenos/new" element={<TerrenoForm />} />
+        <Route path="mensajes" element={<MensajesAdmin />} />
       </Route>
       <Route path="*" element={<Navigate to="/admin/login" />} />
     </Routes>

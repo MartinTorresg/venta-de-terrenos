@@ -10,6 +10,7 @@ import Login from './components/admin/Login';
 import Dashboard from './components/admin/Dashboard';
 import TerrenoForm from './components/admin/TerrenoForm';
 import ProtectedRoute from './components/admin/ProtectedRoute';
+import MensajesAdmin from './components/admin/MensajesAdmin';
 
 const App = () => {
   return (
@@ -29,6 +30,7 @@ const App = () => {
           <Route path="dashboard" element={<Dashboard />} />
           <Route path="terrenos/new" element={<TerrenoForm />} />
           <Route path="terrenos/edit/:id" element={<TerrenoForm />} />
+          <Route path="mensajes" element={<MensajesAdmin />} />
         </Route>
 
         {/* Redirección por defecto */}
