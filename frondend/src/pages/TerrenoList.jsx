@@ -78,7 +78,7 @@ const TerrenoList = () => {
                 <p className="text-gray-400 mt-2">{terreno.descripcion}</p>
                 <p className="text-gray-500 mt-2">Código: {terreno._id}</p>
               </div>
-              <Link to={`/terrenos/${terreno._id}`} className="text-blue-400 hover:underline self-end mt-4">Ver Detalles</Link>
+              <Link to={`/terreno/${terreno._id}`} className="text-blue-400 hover:underline self-end mt-4">Ver Detalles</Link>
             </div>
           </div>
         ))}

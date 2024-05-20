@@ -1,3 +1,4 @@
+// backend/index.js
 require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
@@ -28,7 +29,10 @@ mongoose.connect(`mongodb://${process.env.DB_HOST}:${process.env.DB_PORT}/${proc
 
 // Rutas
 const terrenosRouter = require('./routes/terrenos');
+const authRouter = require('./routes/auth'); // Agrega esta línea
+
 app.use('/api/terrenos', terrenosRouter);
+app.use('/api/auth', authRouter); // Agrega esta línea
 
 // Ruta básica
 app.get('/', (req, res) => {
