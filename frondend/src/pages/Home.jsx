@@ -7,8 +7,8 @@ import meetingImage from '../assets/meeting.jpg'; // Asegúrate de que la ruta s
 
 const Home = () => {
   return (
-    <div className="bg-gray-800">
-      <div className="relative flex flex-col lg:flex-row items-center justify-center h-screen mb-0">
+    <div className="bg-gray-800 min-h-screen flex flex-col justify-between">
+      <div className="relative flex flex-col lg:flex-row items-center justify-center flex-grow mb-0">
         <div className="text-left px-8 max-w-xl lg:absolute lg:top-16 lg:left-10 animate__animated animate__fadeInLeft">
           <h1 className="text-white text-4xl lg:text-5xl font-bold mb-4 flex items-center">
             <FaHome className="mr-2" />
@@ -28,7 +28,7 @@ const Home = () => {
           <img src={terrenoImage} alt="Terreno" className="rounded-lg shadow-md w-full" />
         </div>
       </div>
-
+      
       <div className="py-10 bg-white">
         <div className="max-w-6xl mx-auto px-8 flex flex-col md:flex-row items-center animate__animated animate__fadeInUp">
           <div className="md:w-1/2 mb-8 md:mb-0">

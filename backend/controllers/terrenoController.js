@@ -2,22 +2,28 @@ const Terreno = require('../models/Terreno');
 
 // Crear un nuevo terreno
 exports.createTerreno = async (req, res) => {
-  const { nombre, ubicacion, precio, descripcion, disponibilidad } = req.body;
+  const { nombre, ubicacion, precio, tamano, descripcion, disponibilidad } = req.body;
   const imagenes = req.files.map(file => file.path);
+
+  console.log('Datos recibidos:', { nombre, ubicacion, precio, tamano, descripcion, disponibilidad, imagenes });
 
   try {
     const nuevoTerreno = new Terreno({
       nombre,
       ubicacion,
       precio,
+      tamano, // Cambiado a "tamano"
       descripcion,
       disponibilidad,
       imagenes
     });
 
+    console.log('Nuevo terreno:', nuevoTerreno);
+
     const terrenoGuardado = await nuevoTerreno.save();
     res.json(terrenoGuardado);
   } catch (err) {
+    console.error('Error al crear el terreno:', err);
     res.status(500).json({ message: err.message });
   }
 };
@@ -25,8 +31,10 @@ exports.createTerreno = async (req, res) => {
 // Actualizar un terreno existente
 exports.updateTerreno = async (req, res) => {
   const { id } = req.params;
-  const { nombre, ubicacion, precio, descripcion, disponibilidad } = req.body;
+  const { nombre, ubicacion, precio, tamano, descripcion, disponibilidad } = req.body;
   const imagenes = req.files.map(file => file.path);
+
+  console.log('Datos recibidos para actualizar:', { nombre, ubicacion, precio, tamano, descripcion, disponibilidad, imagenes });
 
   try {
     const terreno = await Terreno.findById(id);
@@ -37,6 +45,7 @@ exports.updateTerreno = async (req, res) => {
     terreno.nombre = nombre;
     terreno.ubicacion = ubicacion;
     terreno.precio = precio;
+    terreno.tamano = tamano; // Cambiado a "tamano"
     terreno.descripcion = descripcion;
     terreno.disponibilidad = disponibilidad;
     terreno.imagenes = imagenes;
@@ -85,24 +94,33 @@ exports.deleteTerreno = async (req, res) => {
   }
 };
 
-// Obtener todos los terrenos
+// Obtener todos los terrenos con filtrado y ordenación
 exports.getTerrenos = async (req, res) => {
-  const { page = 1, limit = 10 } = req.query;
+  const { page = 1, limit = 10, search = '', sortBy = 'nombre', order = 'asc', minPrice, maxPrice, minSize, maxSize, location } = req.query;
+
+  const query = {
+    nombre: { $regex: search, $options: 'i' },
+  };
+
+  if (minPrice) query.precio = { ...query.precio, $gte: Number(minPrice) };
+  if (maxPrice) query.precio = { ...query.precio, $lte: Number(maxPrice) };
+  if (minSize) query.tamaño = { ...query.tamaño, $gte: Number(minSize) };
+  if (maxSize) query.tamaño = { ...query.tamaño, $lte: Number(maxSize) };
+  if (location) query.ubicacion = { $regex: location, $options: 'i' };
 
   try {
-    const terrenos = await Terreno.find()
-      .limit(limit * 1)
+    const terrenos = await Terreno.find(query)
+      .sort({ [sortBy]: order === 'asc' ? 1 : -1 })
       .skip((page - 1) * limit)
-      .exec();
-    const count = await Terreno.countDocuments();
+      .limit(Number(limit));
 
-    res.json({
-      terrenos,
-      totalPages: Math.ceil(count / limit),
-      currentPage: page
-    });
+    const total = await Terreno.countDocuments(query);
+    const totalPages = Math.ceil(total / limit);
+
+    res.json({ terrenos, totalPages });
   } catch (err) {
-    res.status(500).json({ message: err.message });
+    console.error('Error al obtener los terrenos:', err);
+    res.status(500).json({ message: 'Error al obtener los terrenos' });
   }
 };
 
@@ -118,6 +136,7 @@ exports.getTerrenoById = async (req, res) => {
 
     res.json(terreno);
   } catch (err) {
-    res.status(500).json({ message: err.message });
+    console.error('Error al obtener el terreno:', err);
+    res.status(500).json({ message: 'Error al obtener el terreno' });
   }
 };

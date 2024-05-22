@@ -1,3 +1,4 @@
+// backend/models/Terreno.js
 const mongoose = require('mongoose');
 
 const terrenoSchema = new mongoose.Schema({
@@ -10,6 +11,10 @@ const terrenoSchema = new mongoose.Schema({
     required: true
   },
   precio: {
+    type: Number,
+    required: true
+  },
+  tamano: { // Cambiado a "tamano"
     type: Number,
     required: true
   },
