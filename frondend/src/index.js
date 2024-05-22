@@ -3,6 +3,8 @@ import React from 'react';
 import { createRoot } from 'react-dom/client';
 import './index.css';
 import App from './App';
+import 'animate.css';
+
 
 // Encuentra el elemento raíz en el DOM
 const container = document.getElementById('root');
