@@ -1,5 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import moment from 'moment';
+import 'moment/locale/es';  // Importar el idioma español
+
+moment.locale('es');  // Configurar moment a español
 
 const MensajesAdmin = () => {
   const [mensajes, setMensajes] = useState([]);
@@ -13,7 +17,9 @@ const MensajesAdmin = () => {
         const res = await axios.get('http://localhost:3000/api/contact', {
           headers: { 'x-auth-token': token },
         });
-        setMensajes(res.data);
+        // Ordenar mensajes por fecha de creación descendente
+        const sortedMensajes = res.data.sort((a, b) => new Date(b.date) - new Date(a.date));
+        setMensajes(sortedMensajes);
         setLoading(false);
       } catch (err) {
         console.error('Error fetching mensajes:', err);
@@ -56,6 +62,7 @@ const MensajesAdmin = () => {
               <h2 className="text-lg font-semibold mb-2">{mensaje.name}</h2>
               <p className="text-gray-800 mb-2">{mensaje.email}</p>
               <p className="text-gray-600 mb-4">{mensaje.message}</p>
+              <p className="text-gray-500 mb-2">{moment(mensaje.date).format('LLL')}</p>
             </div>
             <button
               onClick={() => handleDelete(mensaje._id)}
