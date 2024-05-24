@@ -1,4 +1,3 @@
-// backend/models/Terreno.js
 const mongoose = require('mongoose');
 
 const terrenoSchema = new mongoose.Schema({
@@ -10,11 +9,19 @@ const terrenoSchema = new mongoose.Schema({
     type: String,
     required: true
   },
+  latitud: {
+    type: Number,
+    required: false
+  },
+  longitud: {
+    type: Number,
+    required: false
+  },
   precio: {
     type: Number,
     required: true
   },
-  tamano: { // Cambiado a "tamano"
+  tamano: {
     type: Number,
     required: true
   },
@@ -27,7 +34,7 @@ const terrenoSchema = new mongoose.Schema({
     required: true
   },
   imagenes: {
-    type: [String], // Array de strings para las rutas de las imágenes
+    type: [String],
     required: false
   }
 });

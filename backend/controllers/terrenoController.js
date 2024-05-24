@@ -2,23 +2,21 @@ const Terreno = require('../models/Terreno');
 
 // Crear un nuevo terreno
 exports.createTerreno = async (req, res) => {
-  const { nombre, ubicacion, precio, tamano, descripcion, disponibilidad } = req.body;
+  const { nombre, ubicacion, precio, tamano, descripcion, disponibilidad, latitud, longitud } = req.body;
   const imagenes = req.files.map(file => file.path);
-
-  console.log('Datos recibidos:', { nombre, ubicacion, precio, tamano, descripcion, disponibilidad, imagenes });
 
   try {
     const nuevoTerreno = new Terreno({
       nombre,
       ubicacion,
+      latitud: parseFloat(latitud),
+      longitud: parseFloat(longitud),
       precio,
-      tamano, // Cambiado a "tamano"
+      tamano,
       descripcion,
       disponibilidad,
       imagenes
     });
-
-    console.log('Nuevo terreno:', nuevoTerreno);
 
     const terrenoGuardado = await nuevoTerreno.save();
     res.json(terrenoGuardado);
@@ -31,10 +29,8 @@ exports.createTerreno = async (req, res) => {
 // Actualizar un terreno existente
 exports.updateTerreno = async (req, res) => {
   const { id } = req.params;
-  const { nombre, ubicacion, precio, tamano, descripcion, disponibilidad } = req.body;
+  const { nombre, ubicacion, precio, tamano, descripcion, disponibilidad, latitud, longitud } = req.body;
   const imagenes = req.files.map(file => file.path);
-
-  console.log('Datos recibidos para actualizar:', { nombre, ubicacion, precio, tamano, descripcion, disponibilidad, imagenes });
 
   try {
     const terreno = await Terreno.findById(id);
@@ -44,8 +40,10 @@ exports.updateTerreno = async (req, res) => {
 
     terreno.nombre = nombre;
     terreno.ubicacion = ubicacion;
+    terreno.latitud = parseFloat(latitud);
+    terreno.longitud = parseFloat(longitud);
     terreno.precio = precio;
-    terreno.tamano = tamano; // Cambiado a "tamano"
+    terreno.tamano = tamano;
     terreno.descripcion = descripcion;
     terreno.disponibilidad = disponibilidad;
     terreno.imagenes = imagenes;

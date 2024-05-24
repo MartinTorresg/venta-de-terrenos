@@ -1,4 +1,3 @@
-// src/components/admin/TerrenoForm.jsx
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
@@ -8,6 +7,8 @@ const TerrenoForm = () => {
   const [formData, setFormData] = useState({
     nombre: '',
     ubicacion: '',
+    latitud: '',
+    longitud: '',
     precio: '',
     tamano: '', // Cambiado a "tamano"
     descripcion: '',
@@ -81,6 +82,28 @@ const TerrenoForm = () => {
             type="text"
             name="ubicacion"
             value={formData.ubicacion}
+            onChange={handleChange}
+            className="w-full px-4 py-2 rounded-lg bg-gray-800 text-white"
+            required
+          />
+        </div>
+        <div className="mb-4">
+          <label className="block text-gray-300">Latitud</label>
+          <input
+            type="number"
+            name="latitud"
+            value={formData.latitud}
+            onChange={handleChange}
+            className="w-full px-4 py-2 rounded-lg bg-gray-800 text-white"
+            required
+          />
+        </div>
+        <div className="mb-4">
+          <label className="block text-gray-300">Longitud</label>
+          <input
+            type="number"
+            name="longitud"
+            value={formData.longitud}
             onChange={handleChange}
             className="w-full px-4 py-2 rounded-lg bg-gray-800 text-white"
             required
