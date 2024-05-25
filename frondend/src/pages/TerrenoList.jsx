@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import axiosInstance from '../axiosInstance'; // Asegúrate de importar axiosInstance
 import { Link } from 'react-router-dom';
 import { FaSearch, FaMapMarkerAlt, FaDollarSign, FaRegIdBadge, FaChevronDown, FaChevronUp } from 'react-icons/fa';
 
@@ -22,7 +22,7 @@ const TerrenoList = () => {
   useEffect(() => {
     const fetchTerrenos = async () => {
       try {
-        const res = await axios.get(`http://localhost:3000/api/terrenos?page=${currentPage}`);
+        const res = await axiosInstance.get(`/terrenos?page=${currentPage}`);
         console.log('Respuesta de la API:', res.data); // Verificar la estructura de la respuesta
         setTerrenos(res.data.terrenos); // Asegúrate de acceder a la propiedad correcta
         setTotalPages(res.data.totalPages);
@@ -182,7 +182,7 @@ const TerrenoList = () => {
         {sortedTerrenos.map((terreno) => (
           <div key={terreno._id} className="bg-gray-700 rounded-lg shadow-md p-4 flex flex-col transform transition duration-300 hover:scale-105 hover:shadow-lg">
             <img
-              src={terreno.imagenes && terreno.imagenes.length > 0 ? `http://localhost:3000/${terreno.imagenes[0]}` : 'https://via.placeholder.com/150'}
+              src={terreno.imagenes && terreno.imagenes.length > 0 ? `http://3.14.72.222:3000/${terreno.imagenes[0]}` : 'https://via.placeholder.com/150'}
               alt={terreno.nombre}
               className="w-full h-48 object-cover rounded-lg mb-4"
             />

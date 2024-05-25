@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const axiosInstance = axios.create({
-  baseURL: 'http://3.14.72.222:3000/api', // Reemplaza '3.14.72.222' con la IP pública de tu instancia EC2
+  baseURL: 'http://3.14.72.222:3000/api',
 });
 
 axiosInstance.interceptors.request.use(
