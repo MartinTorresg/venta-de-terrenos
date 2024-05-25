@@ -1,4 +1,3 @@
-// backend/index.js
 require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
@@ -16,11 +15,9 @@ app.use(express.json());
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 // Conexión a la base de datos
-mongoose.connect(`mongodb://${process.env.DB_HOST}:${process.env.DB_PORT}/${process.env.DB_NAME}`, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-  user: process.env.DB_USER,
-  pass: process.env.DB_PASS
+mongoose.connect(process.env.MONGODB_URI, {
+  useNewUrlParser: true, // Eliminar estos parámetros si estás usando Mongoose 6+
+  useUnifiedTopology: true, // Eliminar estos parámetros si estás usando Mongoose 6+
 }).then(() => {
   console.log('Conectado a la base de datos');
 }).catch((error) => {
