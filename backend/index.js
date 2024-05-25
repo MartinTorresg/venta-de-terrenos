@@ -16,8 +16,8 @@ app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 // Conexión a la base de datos
 mongoose.connect(process.env.MONGODB_URI, {
-  useNewUrlParser: true, // Eliminar estos parámetros si estás usando Mongoose 6+
-  useUnifiedTopology: true, // Eliminar estos parámetros si estás usando Mongoose 6+
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
 }).then(() => {
   console.log('Conectado a la base de datos');
 }).catch((error) => {
@@ -26,11 +26,11 @@ mongoose.connect(process.env.MONGODB_URI, {
 
 // Rutas
 const terrenosRouter = require('./routes/terrenos');
-const authRouter = require('./routes/auth'); // Agrega esta línea
+const authRouter = require('./routes/auth');
 const contactRouter = require('./routes/contact');
 
 app.use('/api/terrenos', terrenosRouter);
-app.use('/api/auth', authRouter); // Agrega esta línea
+app.use('/api/auth', authRouter);
 app.use('/api/contact', contactRouter);
 
 // Ruta básica
