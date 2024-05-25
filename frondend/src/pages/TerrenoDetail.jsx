@@ -12,7 +12,7 @@ const TerrenoDetail = () => {
   useEffect(() => {
     const fetchTerreno = async () => {
       try {
-        const res = await axios.get(`http://localhost:3000/api/terrenos/${id}`);
+        const res = await axios.get(`http://3.14.72.222:3000/api/terrenos/${id}`);
         setTerreno(res.data);
         setLoading(false);
       } catch (err) {
@@ -59,7 +59,7 @@ const TerrenoDetail = () => {
         {imagenes && imagenes.length > 0 && (
           <div className="mt-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
             {imagenes.map((imagen, index) => (
-              <img key={index} src={`http://localhost:3000/${imagen}`} alt={nombre} className="w-full h-48 object-cover rounded-lg shadow-md" />
+              <img key={index} src={`http://3.14.72.222:3000/${imagen}`} alt={nombre} className="w-full h-48 object-cover rounded-lg shadow-md" />
             ))}
           </div>
         )}

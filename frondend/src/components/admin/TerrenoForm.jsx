@@ -49,7 +49,7 @@ const TerrenoForm = () => {
 
     try {
       const token = localStorage.getItem('token');
-      await axios.post('http://localhost:3000/api/terrenos', data, {
+      await axios.post('http://3.14.72.222:3000/api/terrenos', data, {
         headers: {
           'x-auth-token': token,
           'Content-Type': 'multipart/form-data'

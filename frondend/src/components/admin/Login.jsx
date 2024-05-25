@@ -10,7 +10,7 @@ const Login = () => {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post('http://localhost:3000/api/auth/login', { email, password });
+      const res = await axios.post('http://3.14.72.222:3000/api/auth/login', { email, password }); // Cambia esta URL a la IP pública de tu instancia AWS
       localStorage.setItem('token', res.data.token);
       navigate('/admin/dashboard');
     } catch (err) {

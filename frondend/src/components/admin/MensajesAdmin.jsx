@@ -14,7 +14,7 @@ const MensajesAdmin = () => {
     const fetchMensajes = async () => {
       try {
         const token = localStorage.getItem('token');
-        const res = await axios.get('http://localhost:3000/api/contact', {
+        const res = await axios.get('http://3.14.72.222:3000/api/contact', {
           headers: { 'x-auth-token': token },
         });
         // Ordenar mensajes por fecha de creación descendente
@@ -34,7 +34,7 @@ const MensajesAdmin = () => {
   const handleDelete = async (id) => {
     try {
       const token = localStorage.getItem('token');
-      await axios.delete(`http://localhost:3000/api/contact/${id}`, {
+      await axios.delete(`http://3.14.72.222:3000/api/contact/${id}`, {
         headers: { 'x-auth-token': token },
       });
       setMensajes(mensajes.filter((mensaje) => mensaje._id !== id));
