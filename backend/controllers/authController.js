@@ -1,4 +1,5 @@
 // backend/controllers/authController.js
+require('dotenv').config();
 const Usuario = require('../models/Usuario');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
@@ -87,6 +88,7 @@ exports.login = async (req, res) => {
     }
 
     const payload = { userId: usuario.id };
+    console.log('JWT_SECRET:', process.env.JWT_SECRET);
     const token = jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: '1h' });
 
     console.log('Inicio de sesión exitoso para el usuario:', email);
