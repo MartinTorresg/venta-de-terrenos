@@ -1,5 +1,5 @@
 {
-  "name": "frondend",
+  "name": "frontend",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -20,7 +20,7 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "cross-env PORT=3001 react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
@@ -46,7 +46,11 @@
   },
   "devDependencies": {
     "autoprefixer": "^10.4.19",
+<<<<<<< HEAD
     "http-server": "^14.1.1",
+=======
+    "cross-env": "^7.0.3",
+>>>>>>> d9473d6001a8f01af69262db098f6dd4b470ad45
     "postcss": "^8.4.38",
     "serve": "^14.2.3",
     "tailwindcss": "^3.4.3"
