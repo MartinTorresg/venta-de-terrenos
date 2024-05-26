@@ -47,7 +47,7 @@ const Dashboard = () => {
       const token = localStorage.getItem('token');
       console.log('Token para eliminación:', token);
       console.log('ID del terreno a eliminar:', id);
-      await axios.delete(`http://ec2-18-119-10-107.us-east-2.compute.amazonaws.com/api/terrenos/${id}`, {
+      await axios.delete(`http://ec2-18-119-10-107.us-east-2.compute.amazonaws.com:3000/api/terrenos/${id}`, {
         headers: { 'x-auth-token': token }
       });
       setTerrenos(terrenos.filter((terreno) => terreno._id !== id));

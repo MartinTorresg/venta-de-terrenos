@@ -34,7 +34,7 @@ const MensajesAdmin = () => {
   const handleDelete = async (id) => {
     try {
       const token = localStorage.getItem('token');
-      await axios.delete(`http://ec2-18-119-10-107.us-east-2.compute.amazonaws.com/api/contact/${id}`, {
+      await axios.delete(`http://ec2-18-119-10-107.us-east-2.compute.amazonaws.com:3000/api/contact/${id}`, {
         headers: { 'x-auth-token': token },
       });
       setMensajes(mensajes.filter((mensaje) => mensaje._id !== id));
