@@ -16,7 +16,7 @@ const Dashboard = () => {
     const fetchTerrenos = async () => {
       try {
         const token = localStorage.getItem('token');
-        const res = await axios.get('ec2-18-119-10-107.us-east-2.compute.amazonaws.com/api/terrenos', {
+        const res = await axios.get('http://ec2-18-119-10-107.us-east-2.compute.amazonaws.com:3000/api/terrenos', {
           headers: { 'x-auth-token': token }
         });
         console.log('Respuesta de la API:', res.data);
@@ -47,7 +47,7 @@ const Dashboard = () => {
       const token = localStorage.getItem('token');
       console.log('Token para eliminación:', token);
       console.log('ID del terreno a eliminar:', id);
-      await axios.delete(`ec2-18-119-10-107.us-east-2.compute.amazonaws.com/api/terrenos/${id}`, {
+      await axios.delete(`http://ec2-18-119-10-107.us-east-2.compute.amazonaws.com/api/terrenos/${id}`, {
         headers: { 'x-auth-token': token }
       });
       setTerrenos(terrenos.filter((terreno) => terreno._id !== id));
@@ -101,7 +101,7 @@ const Dashboard = () => {
               <p className="text-gray-400">{terreno.ubicacion}</p>
               <p className="text-gray-400">${terreno.precio}</p>
               {terreno.imagen && (
-                <img src={`ec2-18-119-10-107.us-east-2.compute.amazonaws.com${terreno.imagen}`} alt={terreno.nombre} className="w-full rounded-md mt-4" />
+                <img src={`http://ec2-18-119-10-107.us-east-2.compute.amazonaws.com${terreno.imagen}`} alt={terreno.nombre} className="w-full rounded-md mt-4" />
               )}
               <div className="flex space-x-4 mt-4">
                 <button

@@ -18,11 +18,7 @@ const Contact = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-<<<<<<< HEAD
       await axios.post('http://ec2-18-119-10-107.us-east-2.compute.amazonaws.com:3000/api/contact', formData); // Reemplaza 'localhost' con la IP pública de tu instancia EC2
-=======
-      await axios.post('ec2-18-119-10-107.us-east-2.compute.amazonaws.com/api/contact', formData); // Reemplaza 'localhost' con la IP pública de tu instancia EC2
->>>>>>> d9473d6001a8f01af69262db098f6dd4b470ad45
       setSuccess('Mensaje enviado con éxito');
       setFormData({ name: '', email: '', message: '' });
     } catch (err) {

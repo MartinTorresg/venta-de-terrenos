@@ -1,11 +1,7 @@
 import axios from 'axios';
 
 const axiosInstance = axios.create({
-<<<<<<< HEAD
-  baseURL: 'http://ec2-18-119-10-107.us-east-2.compute.amazonaws.com:3000/api',
-=======
-  baseURL: 'ec2-18-119-10-107.us-east-2.compute.amazonaws.com/api',
->>>>>>> d9473d6001a8f01af69262db098f6dd4b470ad45
+  baseURL: 'http://ec2-18-119-10-107.us-east-2.compute.amazonaws.com:3000/api', // Reemplaza '3.14.72.222' con la IP pública de tu instancia EC2
 });
 
 axiosInstance.interceptors.request.use(

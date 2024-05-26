@@ -10,7 +10,7 @@ const Login = () => {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post('ec2-18-119-10-107.us-east-2.compute.amazonaws.com/api/auth/login', { email, password }); // Cambia esta URL a la IP pública de tu instancia AWS
+      const res = await axios.post('http://ec2-18-119-10-107.us-east-2.compute.amazonaws.com:3000/api/auth/login', { email, password }); // Cambia esta URL a la IP pública de tu instancia AWS
       localStorage.setItem('token', res.data.token);
       navigate('/admin/dashboard');
     } catch (err) {
